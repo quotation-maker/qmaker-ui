@@ -2,6 +2,10 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
+
+  const title = "Welcome to your Next.js app";
+  const description = 'Get started by editing app/page.tsx';
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
