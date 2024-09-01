@@ -1,4 +1,15 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 
-export default nextConfig;
+const withVanillaExtract = createVanillaExtractPlugin();
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  eslint: {
+    dirs: ['app'],
+  },
+};
+
+export default withVanillaExtract(nextConfig);
