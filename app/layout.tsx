@@ -1,3 +1,4 @@
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import type { Metadata } from 'next';
 import 'normalize.css';
 import '@styles/global.css';
@@ -26,7 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={pretendardFont.className}>{children}</body>
+      <body className={pretendardFont.className}>
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          {children}
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
