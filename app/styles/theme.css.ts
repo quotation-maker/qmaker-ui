@@ -52,6 +52,7 @@ export const vars = createThemeContract({
   color: {
     primary: null,
     secondary: null,
+    primaryLight: null,
     gray: null,
     black: null,
     pureWhite: null,
@@ -140,6 +141,7 @@ createGlobalTheme(':root', vars, {
   },
   color: {
     primary: '#854DFF',
+    primaryLight: '#A78BFA',
     secondary: '#CDF348',
     error: '#FF5757',
     gray: '#777F98',

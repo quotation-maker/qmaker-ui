@@ -1,9 +1,9 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import type { SubmitHandler } from 'react-hook-form';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm, useController } from 'react-hook-form';
 import z from 'zod';
 import styles from './form.css';
 
@@ -34,18 +34,42 @@ export default function Form() {
     resolver: zodResolver(schema),
     mode: 'onBlur',
   });
-  const { handleSubmit, register } = methods;
+  const { handleSubmit, control } = methods;
+  const {
+    field,
+    fieldState: { invalid }, // isDirty:, isTouched
+  } = useController<IFormInput>({
+    name: 'toUsername',
+    control,
+  });
   const onSubmit: SubmitHandler<IFormInput> = () => {};
 
   return (
-    <FormProvider {...methods}>
-      <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <Input {...register('toUsername')} />
-        </div>
-
-        <Button>Submit</Button>
-      </form>
-    </FormProvider>
+    <section className={styles.section}>
+      <FormProvider {...methods}>
+        <form
+          className={styles.formContainer}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div>
+            <TextField
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              value={field.value}
+              name={field.name}
+              inputRef={field.ref}
+              label="받는 사람"
+              variant="standard"
+              helperText={invalid && '받는 사람 이름은 필수 값입니다.'}
+              error={invalid}
+              className={styles.textInput}
+            />
+          </div>
+          <div className={styles.buttonArea}>
+            <Button className={styles.primaryButton}>Submit</Button>
+          </div>
+        </form>
+      </FormProvider>
+    </section>
   );
 }
