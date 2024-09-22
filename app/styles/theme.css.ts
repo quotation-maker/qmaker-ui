@@ -149,12 +149,12 @@ createGlobalTheme(':root', vars, {
     lightGray: '#DBDBDB',
     smokeyGray: '#716F6F',
     offBlack: '#141414',
-    background: '#06101C',
+    background: '#FFFFFF',
   },
   blurPanel: {
     borderRadius: '20px',
-    border: '3px solid rgba(255,255,255,0.1)',
-    background: 'rgba(225,225,225,0.1)',
+    border: '3px solid rgba(0,0,0,0.1)',
+    background: 'rgba(0,0,0,0.1)',
     backdropFilter: 'blur(10px)',
   },
   section: {

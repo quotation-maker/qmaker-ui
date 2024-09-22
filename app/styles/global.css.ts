@@ -32,7 +32,7 @@ globalStyle('body::before', {
   width: '100%',
   height: '100%',
   zIndex: -1000,
-  background: 'url("/images/background.jpg") no-repeat center / 100% 100%',
+  // background: 'url("/images/background.jpg") no-repeat center / 100% 100%',
 });
 
 globalStyle('a', {

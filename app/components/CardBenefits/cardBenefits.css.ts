@@ -121,7 +121,7 @@ const cardContent = style({
 });
 
 const typographyTitle = style({
-  color: vars.color.offWhite,
+  color: vars.color.offBlack,
   ...vars.typography.heading.S,
   '@media': {
     [$breakpoints.tablet]: {
@@ -131,7 +131,7 @@ const typographyTitle = style({
 });
 
 const typographyContent = style({
-  color: vars.color.lightGray,
+  color: vars.color.gray,
   ...vars.typography.body.S,
   '@media': {
     [$breakpoints.tablet]: {

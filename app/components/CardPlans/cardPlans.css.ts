@@ -38,7 +38,7 @@ const container = style({
 
 const heading = style({
   padding: '0 0 1.5rem',
-  color: vars.color.offWhite,
+  color: vars.color.offBlack,
   textAlign: 'center',
   ...vars.typography.heading.L,
   '@media': {

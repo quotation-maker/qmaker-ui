@@ -3,7 +3,7 @@ import { vars } from '@styles/theme.css';
 import { $breakpoints } from '@styles/utils';
 
 const introduce = style({
-  color: vars.color.offWhite,
+  color: vars.color.offBlack,
   display: 'flex',
   flexFlow: 'column nowrap',
   alignItems: 'center',
@@ -77,7 +77,7 @@ const highlightColor = style({
 const paragraph = style({
   marginTop: '2rem',
   textAlign: 'center',
-  color: vars.color.lightGray,
+  color: vars.color.gray,
   whiteSpace: 'pre-wrap',
   ...vars.typography.body.S,
   '@media': {

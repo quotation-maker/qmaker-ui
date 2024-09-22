@@ -9,7 +9,7 @@ const header = style({
   right: 0,
   zIndex: 5000,
   padding: '1rem',
-  color: vars.color.offWhite,
+  color: vars.color.offBlack,
   background: 'rgba(225,225,225,0.1)',
   backdropFilter: 'blur(10px)',
   '@media': {
