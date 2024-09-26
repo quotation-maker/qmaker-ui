@@ -2,11 +2,12 @@
 
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
+import ResponsiveIcon from '@icons/anywhere.svg';
 import AtOnceIcon from '@icons/at-once.svg';
+import ClipIcon from '@icons/clip.svg';
 import FastIcon from '@icons/fast.svg';
 import MoneyIcon from '@icons/money.svg';
-import ResponsiveIcon from '@icons/responsive.svg';
-import styles from './cardBenefits.css';
+import styles from './benefits.css';
 import { outVariants, inVariants } from './motion';
 
 interface ICustomCard {
@@ -19,9 +20,12 @@ interface ICustomCard {
 function CustomCard({ className, Icon, title, content }: ICustomCard) {
   return (
     <motion.div className={className} variants={inVariants}>
+      <div className={styles.top}>
+        <ClipIcon className={styles.clip} />
+      </div>
       <Card className={styles.card}>
         <CardMedia className={styles.cardMedia}>
-          <Icon className={styles.cardMediaIcon} />
+          <Icon />
         </CardMedia>
         <CardContent className={styles.cardContent}>
           <Typography className={styles.typographyTitle} variant="h3">
@@ -36,12 +40,13 @@ function CustomCard({ className, Icon, title, content }: ICustomCard) {
   );
 }
 
-export default function CardBenefits() {
+export default function Benefits() {
   return (
     <motion.div
       className={styles.container}
       initial="hidden"
-      animate="show"
+      whileInView="show"
+      viewport={{ once: true }}
       variants={outVariants}
     >
       <CustomCard

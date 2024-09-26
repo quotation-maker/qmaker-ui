@@ -4,50 +4,41 @@ import { $breakpoints } from '@styles/utils';
 
 const container = style({
   position: 'relative',
-  ...vars.blurPanel,
+  ...vars.panel.L,
   ...vars.section.mobile,
-  margin: '4rem auto',
+  margin: '8rem auto',
   width: '90%',
   padding: '1rem 2rem 2rem',
-  '::before': {
-    position: 'absolute',
-    content: '',
-    bottom: -50,
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '90%',
-    height: '96px',
-    background: `url("/icons/bg-footer-squiggle.svg") no-repeat center / 100% 100%`,
-  },
   '@media': {
     [$breakpoints.tablet]: {
-      padding: '1.5rem 0 3rem',
+      padding: '1.5rem 2rem 3rem',
       ...vars.section.tablet,
-      margin: '5rem auto',
+      margin: '12rem auto',
     },
     [$breakpoints.laptop]: {
       ...vars.section.laptop,
-      margin: '10rem auto',
+      margin: '16rem auto',
     },
     [$breakpoints.desktop]: {
       ...vars.section.desktop,
-      margin: '10rem auto',
+      margin: '16rem auto',
     },
   },
 });
 
 const heading = style({
-  padding: '0 0 1.5rem',
+  position: 'relative',
+  padding: '0 0 0.5rem',
   color: vars.color.offBlack,
   textAlign: 'center',
   ...vars.typography.heading.L,
   '@media': {
     [$breakpoints.tablet]: {
-      padding: '0 0 2rem',
+      padding: '0 0 0.75rem',
       ...vars.typography.heading.XL,
     },
     [$breakpoints.laptop]: {
-      padding: '0 0 3rem',
+      padding: '0 0 1rem',
       ...vars.typography.heading.XXL,
     },
   },
@@ -58,25 +49,30 @@ const cardWrapper = style({
   flexFlow: 'column nowrap',
   justifyContent: 'center',
   rowGap: '2rem',
+  borderTop: `4px solid ${vars.color.onyx}`,
+  paddingTop: '2rem',
   '@media': {
     [$breakpoints.tablet]: {
       rowGap: '2.5rem',
     },
     [$breakpoints.laptop]: {
+      columnGap: '2rem',
       flexDirection: 'row',
+    },
+    [$breakpoints.desktop]: {
+      columnGap: '3rem',
     },
   },
 });
 
 const card = style({
-  borderRadius: 20,
+  position: 'relative',
   padding: '1.25rem',
-  boxShadow: 'none',
   margin: '0 auto',
+  ...vars.panel.S,
   '@media': {
     [$breakpoints.tablet]: {
       padding: '2rem',
-      width: '90%',
       height: '365px',
     },
     [$breakpoints.laptop]: {
@@ -132,9 +128,7 @@ const primary = style({
   color: vars.color.offWhite,
 });
 
-const secondary = style({
-  background: vars.color.offWhite,
-});
+const secondary = style({});
 
 const benefitList = style({
   display: 'flex',
@@ -162,6 +156,22 @@ const bright = style({
   color: vars.color.secondary,
 });
 
+const labelIcon = style({
+  position: 'absolute',
+  zIndex: 1000,
+  top: -4,
+  right: 0,
+  width: '72px',
+  '@media': {
+    [$breakpoints.tablet]: {
+      width: '76px',
+    },
+    [$breakpoints.laptop]: {
+      width: '84px',
+    },
+  },
+});
+
 const styles = {
   heading,
   container,
@@ -178,6 +188,7 @@ const styles = {
   primary,
   secondary,
   bright,
+  labelIcon,
 };
 
 export default styles;

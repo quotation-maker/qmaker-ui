@@ -24,17 +24,6 @@ globalStyle('body', {
   position: 'relative',
 });
 
-globalStyle('body::before', {
-  position: 'absolute',
-  content: '',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  zIndex: -1000,
-  // background: 'url("/images/background.jpg") no-repeat center / 100% 100%',
-});
-
 globalStyle('a', {
   color: 'inherit',
   textDecoration: 'none',
