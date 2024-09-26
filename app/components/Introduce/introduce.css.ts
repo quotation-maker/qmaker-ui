@@ -3,32 +3,63 @@ import { vars } from '@styles/theme.css';
 import { $breakpoints } from '@styles/utils';
 
 const introduce = style({
-  color: vars.color.offBlack,
-  display: 'flex',
-  flexFlow: 'column nowrap',
-  alignItems: 'center',
-  ...vars.section.mobile,
-  marginTop: '5rem',
+  position: 'relative',
+  color: vars.color.onyx,
+  ...vars.panel.L,
+  margin: '0 auto',
+  padding: '1rem',
+  width: '90%',
+  marginTop: '6rem',
   '@media': {
     [$breakpoints.tablet]: {
-      ...vars.section.tablet,
-      paddingTop: '2rem',
-      marginTop: '6rem',
+      margin: '6rem auto 0',
+      padding: '1rem 2rem',
+      width: '444px',
+      '::before': {
+        position: 'absolute',
+        content: '',
+        top: '30px',
+        left: '-120px',
+        width: '100px',
+        height: '100%',
+        zIndex: -1000,
+        background: 'url("/icons/arrow.svg") no-repeat center / 100% 100%',
+        transform: 'scaleX(-1)',
+      },
     },
     [$breakpoints.laptop]: {
-      ...vars.section.laptop,
-      paddingTop: '3rem',
-      marginTop: '10rem',
+      margin: '10rem auto 0',
+      padding: '1rem 2rem',
+      width: '576px',
+      '::before': {
+        left: '-180px',
+        width: '150px',
+      },
     },
-    [$breakpoints.desktop]: {
-      ...vars.section.desktop,
-      marginTop: '10rem',
+  },
+});
+
+const rightNow = style({
+  position: 'absolute',
+  content: '',
+  top: '-30px',
+  left: '9px',
+  ...vars.panel.S,
+  background: vars.color['yellow-100'],
+  padding: '6px 12px',
+  ...vars.typography.heading.M,
+  '@media': {
+    [$breakpoints.tablet]: {
+      padding: '8px 18px',
+      top: '-50px',
+      left: '20px',
+      ...vars.typography.heading.L,
     },
   },
 });
 
 const heading2 = style({
-  textAlign: 'center',
+  position: 'relative',
   whiteSpace: 'pre-wrap',
   ...vars.typography.heading.L,
   '@media': {
@@ -43,23 +74,20 @@ const heading2 = style({
 
 const drawing = style({
   position: 'absolute',
-  content: '',
-  top: 0,
-  left: '50%',
-  transform: 'translateX(-50%)',
-  zIndex: -1000,
-  height: '164px',
+  bottom: 0,
+  right: 0,
+  width: '80px',
   '@media': {
     [$breakpoints.tablet]: {
-      top: '1rem',
-      height: '200px',
+      width: '100px',
     },
     [$breakpoints.laptop]: {
-      top: '1.25rem',
-      height: '252px',
+      width: '120px',
     },
   },
 });
+
+const arrowDrawing = style({});
 
 const highlightColor = style({
   ...vars.typography.heading.L,
@@ -89,8 +117,10 @@ const paragraph = style({
 
 const styles = {
   introduce,
+  rightNow,
   heading2,
   drawing,
+  arrowDrawing,
   highlightColor,
   paragraph,
 };

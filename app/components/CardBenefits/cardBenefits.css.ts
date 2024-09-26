@@ -8,10 +8,10 @@ const container = style({
   justifyContent: 'space-between',
   rowGap: '1rem',
   ...vars.section.mobile,
+  width: '90%',
   marginTop: '1rem',
   '@media': {
     [$breakpoints.tablet]: {
-      padding: 0,
       rowGap: '1.5rem',
       ...vars.section.tablet,
       marginTop: '2rem',
@@ -29,82 +29,82 @@ const container = style({
 });
 
 const item = style({
-  selectors: {
-    '&:nth-child(2n-1)': {
-      '@media': {
-        [$breakpoints.tablet]: {
-          paddingLeft: '56px',
-        },
-        [$breakpoints.laptop]: {
-          paddingLeft: 0,
-        },
-      },
-    },
-    '&:nth-child(2n)': {
-      '@media': {
-        [$breakpoints.laptop]: {
-          paddingTop: '2rem',
-        },
-        [$breakpoints.desktop]: {
-          paddingTop: '3rem',
-        },
-      },
-    },
-  },
+  display: 'flex',
+  flexFlow: 'column nowrap',
+  ...vars.panel.S,
+  background: vars.color.pureWhite,
 });
 
 const card = style({
   display: 'flex',
   flexFlow: 'row nowrap',
-  alignItems: 'center',
   background: 'transparent',
   boxShadow: 'none',
+  alignItems: 'center',
   columnGap: '1rem',
+  padding: '0 0.5rem',
   '@media': {
     [$breakpoints.tablet]: {
-      columnGap: '1.5rem',
+      padding: '0 0.75rem',
     },
     [$breakpoints.laptop]: {
-      alignItems: 'flex-start',
       flexFlow: 'column nowrap',
     },
   },
 });
 
-const cardMedia = style({
-  background: 'rgba(225,225,225,0.05)',
-  borderRadius: 20,
-  flex: '0 0 88px',
-  height: '90px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+const top = style({
+  height: '14px',
+  background: vars.color['orange-100'],
+  borderBottom: `2px solid ${vars.color.onyx}`,
+  position: 'relative',
   '@media': {
     [$breakpoints.tablet]: {
-      borderRadius: 25,
-      flex: '0 0 104px',
-      height: '107px',
+      height: '21px',
     },
     [$breakpoints.laptop]: {
-      width: '107px',
-      flex: '0 0 104px',
-    },
-    [$breakpoints.desktop]: {
-      borderRadius: 40,
-      width: '160px',
-      flex: '0 0 164px',
+      height: '28px',
     },
   },
 });
 
-const cardMediaIcon = style({
-  flexBasis: 32,
+const clip = style({
+  position: 'absolute',
+  top: '-6px',
+  right: '6px',
+  height: '14px',
   '@media': {
     [$breakpoints.tablet]: {
-      flexBasis: 40,
+      top: '-8px',
+      right: '8px',
+      height: '21px',
+    },
+    [$breakpoints.laptop]: {
+      top: '-10px',
+      right: '10px',
+      height: '28px',
+    },
+  },
+});
+
+const cardMedia = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flex: '0 0 72px',
+  height: '72px',
+  '@media': {
+    [$breakpoints.tablet]: {
+      flex: '0 0 96px',
+      height: '96px',
+    },
+    [$breakpoints.laptop]: {
+      flex: '0 0 156px',
+      width: '156px',
     },
     [$breakpoints.desktop]: {
-      flexBasis: 64,
+      width: '220px',
+      flex: '0 0 220px',
     },
   },
 });
@@ -115,6 +115,7 @@ const cardContent = style({
       marginTop: '1.5rem',
     },
     [$breakpoints.desktop]: {
+      padding: '0 8px 4px',
       marginTop: '2rem',
     },
   },
@@ -131,19 +132,19 @@ const typographyTitle = style({
 });
 
 const typographyContent = style({
-  color: vars.color.gray,
+  color: vars.color.offBlack,
   ...vars.typography.body.S,
   '@media': {
     [$breakpoints.tablet]: {
       ...vars.typography.body.M,
     },
     [$breakpoints.laptop]: {
-      marginTop: '0.5rem',
-      width: '176px',
+      margin: '0.5rem 0',
+      width: '156px',
     },
     [$breakpoints.desktop]: {
-      marginTop: '0.75rem',
-      width: '255px',
+      margin: '0.75rem 0',
+      width: '196px',
     },
   },
 });
@@ -151,9 +152,10 @@ const typographyContent = style({
 const styles = {
   container,
   item,
+  top,
+  clip,
   card,
   cardMedia,
-  cardMediaIcon,
   cardContent,
   typographyTitle,
   typographyContent,

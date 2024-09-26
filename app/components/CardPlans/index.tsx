@@ -3,6 +3,7 @@
 import { Card, CardContent, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import LabelIcon from '@icons/label.svg';
 import styles from './cardPlans.css';
 import { inVariants, outVariants } from './motion';
 
@@ -24,8 +25,23 @@ function CustomCard({
   dateCycleUnit,
 }: ICustomCard) {
   return (
-    <motion.div initial="hidden" whileInView="show" variants={outVariants}>
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      variants={outVariants}
+    >
       <Card className={clsx(styles.card, styles[variant] as string)}>
+        {variant === 'primary' && (
+          <motion.div
+            className={styles.labelIcon}
+            animate={{
+              rotate: [0, 0, 45, -25, 0],
+            }}
+          >
+            <LabelIcon />
+          </motion.div>
+        )}
         <CardContent className={styles.cardContent}>
           <Typography className={styles.subTitle} variant="subtitle1">
             {subTitle}
@@ -72,7 +88,7 @@ function CustomCard({
 export default function CardPlans() {
   return (
     <section className={styles.container}>
-      <h2 className={styles.heading}>our pricing plans</h2>
+      <h2 className={styles.heading}>Our pricing plans</h2>
       <div className={styles.cardWrapper}>
         <CustomCard
           variant="secondary"

@@ -62,17 +62,27 @@ export const vars = createThemeContract({
     smokeyGray: null,
     offBlack: null,
     background: null,
+    'purple-100': null,
+    'yellow-100': null,
+    'orange-100': null,
+    onyx: null,
   },
-  blurPanel: {
-    borderRadius: null,
-    border: null,
-    background: null,
-    backdropFilter: null,
+  panel: {
+    L: {
+      borderRadius: null,
+      border: null,
+      background: null,
+      boxShadow: null,
+    },
+    S: {
+      borderRadius: null,
+      border: null,
+      boxShadow: null,
+    },
   },
   section: {
     mobile: {
       width: null,
-      padding: null,
       margin: null,
     },
     tablet: {
@@ -151,18 +161,28 @@ createGlobalTheme(':root', vars, {
     lightGray: '#DBDBDB',
     smokeyGray: '#716F6F',
     offBlack: '#141414',
-    background: '#FFFFFF',
+    background: vars.color['purple-100'],
+    'purple-100': '#BBB3F9',
+    'yellow-100': '#FDFEBE',
+    'orange-100': '#F8D7AB',
+    onyx: '#000000',
   },
-  blurPanel: {
-    borderRadius: '20px',
-    border: '3px solid rgba(0,0,0,0.1)',
-    background: 'rgba(0,0,0,0.1)',
-    backdropFilter: 'blur(10px)',
+  panel: {
+    L: {
+      borderRadius: '24px',
+      border: `4px solid ${vars.color.onyx}`,
+      background: vars.color.pureWhite,
+      boxShadow: `5px 5px ${vars.color.onyx}`,
+    },
+    S: {
+      borderRadius: '4px',
+      border: `2px solid ${vars.color.onyx}`,
+      boxShadow: `3px 3px ${vars.color.onyx}`,
+    },
   },
   section: {
     mobile: {
       margin: '0 auto',
-      padding: '1rem',
       width: '100%',
     },
     tablet: {

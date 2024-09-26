@@ -9,7 +9,7 @@ const formContainer = style({
 });
 
 const section = style({
-  ...vars.blurPanel,
+  ...vars.panel.L,
   ...vars.section.mobile,
   marginTop: '1rem',
   '@media': {
