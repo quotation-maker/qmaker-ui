@@ -6,22 +6,22 @@ const container = style({
   position: 'relative',
   ...vars.panel.L,
   ...vars.section.mobile,
-  margin: '4rem auto',
+  margin: '8rem auto',
   width: '90%',
   padding: '1rem 2rem 2rem',
   '@media': {
     [$breakpoints.tablet]: {
       padding: '1.5rem 2rem 3rem',
       ...vars.section.tablet,
-      margin: '5rem auto',
+      margin: '12rem auto',
     },
     [$breakpoints.laptop]: {
       ...vars.section.laptop,
-      margin: '10rem auto',
+      margin: '16rem auto',
     },
     [$breakpoints.desktop]: {
       ...vars.section.desktop,
-      margin: '10rem auto',
+      margin: '16rem auto',
     },
   },
 });

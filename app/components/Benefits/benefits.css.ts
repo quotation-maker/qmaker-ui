@@ -9,21 +9,21 @@ const container = style({
   rowGap: '1rem',
   ...vars.section.mobile,
   width: '90%',
-  marginTop: '1rem',
+  margin: '8rem auto',
   '@media': {
     [$breakpoints.tablet]: {
       rowGap: '1.5rem',
       ...vars.section.tablet,
-      marginTop: '2rem',
+      margin: '12rem auto',
     },
     [$breakpoints.laptop]: {
       flexDirection: 'row',
       ...vars.section.laptop,
-      marginTop: '4rem',
+      margin: '16rem auto',
     },
     [$breakpoints.desktop]: {
       ...vars.section.desktop,
-      marginTop: '4rem',
+      margin: '16rem auto',
     },
   },
 });

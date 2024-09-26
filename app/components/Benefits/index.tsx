@@ -7,7 +7,7 @@ import AtOnceIcon from '@icons/at-once.svg';
 import ClipIcon from '@icons/clip.svg';
 import FastIcon from '@icons/fast.svg';
 import MoneyIcon from '@icons/money.svg';
-import styles from './cardBenefits.css';
+import styles from './benefits.css';
 import { outVariants, inVariants } from './motion';
 
 interface ICustomCard {
@@ -40,7 +40,7 @@ function CustomCard({ className, Icon, title, content }: ICustomCard) {
   );
 }
 
-export default function CardBenefits() {
+export default function Benefits() {
   return (
     <motion.div
       className={styles.container}

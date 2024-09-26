@@ -4,8 +4,8 @@ import { Card, CardContent, Typography } from '@mui/material';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import LabelIcon from '@icons/label.svg';
-import styles from './cardPlans.css';
-import { inVariants, outVariants } from './motion';
+import { iconVariants, inVariants, outVariants } from './motion';
+import styles from './plans.css';
 
 interface ICustomCard {
   variant: 'primary' | 'secondary';
@@ -34,10 +34,11 @@ function CustomCard({
       <Card className={clsx(styles.card, styles[variant] as string)}>
         {variant === 'primary' && (
           <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
             className={styles.labelIcon}
-            animate={{
-              rotate: [0, 0, 45, -25, 0],
-            }}
+            variants={iconVariants}
           >
             <LabelIcon />
           </motion.div>
@@ -85,7 +86,7 @@ function CustomCard({
   );
 }
 
-export default function CardPlans() {
+export default function Plans() {
   return (
     <section className={styles.container}>
       <h2 className={styles.heading}>Our pricing plans</h2>
