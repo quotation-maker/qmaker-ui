@@ -10,7 +10,7 @@ const header = style({
   zIndex: 5000,
   padding: '1rem',
   color: vars.color.offBlack,
-  background: 'rgba(225,225,225,0.1)',
+  background: vars.color.pureWhite,
   backdropFilter: 'blur(10px)',
   '@media': {
     [$breakpoints.tablet]: {},
