@@ -49,6 +49,5 @@
     "next-recommended/async-server-actions": "error",
     "next-recommended/async-exported-server-actions": "error",
     "next-recommended/export-server-actions-only": "error"
-  },
-  "ignorePatterns": [".*.js", "node_modules/", "dist/"]
+  }
 }

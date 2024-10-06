@@ -1,0 +1,47 @@
+name: CD
+
+on:
+  push:
+    branches: ['deploy']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+
+      - name: Build
+        run: |
+          npm install next
+          npm run build
+
+      - name: Docker build and push
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          REPO: ${{ secrets.DOCKER_REPOSITORY }}
+        run: |
+          docker login -u $USERNAME -p $PASSWORD
+          docker build -t $USERNAME/$REPO:${GITHUB_SHA::7} -t $USERNAME/$REPO:latest .
+          docker push $USERNAME/$REPO:${GITHUB_SHA::7}
+          docker push $USERNAME/$REPO:latest
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        env:
+          REPO: ${{ secrets.DOCKER_REPOSITORY }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ubuntu
+          key: ${{ secrets.KEY }}
+          envs: GITHUB_SHA,REPO
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/$REPO:${GITHUB_SHA::7}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/$REPO:${GITHUB_SHA::7} $REPO
+            docker stop $REPO
+            docker rm $REPO
+            docker run -d --name $REPO -p 80:3000 $REPO
