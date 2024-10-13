@@ -2,17 +2,35 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@mui/material';
-import { useFunnel } from '@use-funnel/browser';
+import { useState } from 'react';
 // import type { SubmitHandler } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
 import z from 'zod';
+import Funnel from '@components/Funnel';
 import styles from './form.css';
-import type { FunnelState } from './type';
 
 interface IFormInput {
   toUsername: string;
 }
+
+const steps = ['writer', 'item', 'receiver', 'etc'] as const;
+
+type Steps = (typeof steps)[number];
+
 export default function Form() {
+  const [step, setStep] = useState<Steps>('writer');
+  const currentStep = steps.indexOf(step);
+  const isLastStep = currentStep === steps.length;
+
+  const nextStep = () => {
+    if (isLastStep) return;
+    setStep(steps[currentStep + 1]);
+  };
+
+  const prevStep = () => {
+    setStep(steps[currentStep - 1]);
+  };
+
   const schema = z.object({
     toUsername: z
       .string()
@@ -42,13 +60,6 @@ export default function Form() {
   //   control,
   // });
   // const onSubmit: SubmitHandler<IFormInput> = () => { };
-  const funnel = useFunnel<FunnelState>({
-    id: 'quickStart',
-    initial: {
-      step: 'writer',
-      context: {},
-    },
-  });
 
   return (
     <section className={styles.section}>
@@ -57,33 +68,54 @@ export default function Form() {
           className={styles.formContainer}
           // onSubmit={handleSubmit(onSubmit)}
         >
-          <funnel.Render
-            writer={({ history }) => (
-              <WriterFields onNext={() => history.push('item')} />
-            )}
-            item={({ history }) => (
-              <ItemFields onNext={() => history.push('receiver')} />
-            )}
-            receiver={({ history }) => (
-              <ReceiverFields onNext={() => history.push('etc')} />
-            )}
-            etc={() => <EtcFields />}
-          />
+          <Funnel<typeof steps> step={step} steps={steps}>
+            <Funnel.Step name="writer">
+              <div>
+                writer
+                <button onClick={nextStep}>next</button>
+              </div>
+            </Funnel.Step>
+            <Funnel.Step name="item">
+              <div>
+                item
+                <button onClick={nextStep}>next</button>
+                <button onClick={prevStep}>prev</button>
+              </div>
+            </Funnel.Step>
+            <Funnel.Step name="receiver">
+              <div>
+                receiver
+                <button onClick={nextStep}>next</button>
+                <button onClick={prevStep}>prev</button>
+              </div>
+            </Funnel.Step>
+            <Funnel.Step name="etc">
+              <div>
+                etc
+                <button onClick={prevStep}>prev</button>
+              </div>
+            </Funnel.Step>
+          </Funnel>
+          <div className={styles.buttonArea}>
+            <Button className={styles.primaryButton}>Submit</Button>
+          </div>
         </form>
-        <div className={styles.buttonArea}>
-          <Button className={styles.primaryButton}>Submit</Button>
-        </div>
       </FormProvider>
     </section>
   );
 }
 
+/*
 function WriterFields({ onNext }: { onNext: () => void }) {
+  const handleClick = () => {
+    console.log('click writer');
+    onNext();
+  }
+
   return (
     <>
       <div>
         Writer
-        {/*
           <TextField
           onChange={field.onChange}
           onBlur={field.onBlur}
@@ -96,8 +128,7 @@ function WriterFields({ onNext }: { onNext: () => void }) {
           error={invalid}
           className={styles.textInput}
           />
-          */}
-        <button onClick={onNext}>next</button>
+        <button onClick={handleClick}>next</button>
       </div>
     </>
   );
@@ -106,7 +137,7 @@ function WriterFields({ onNext }: { onNext: () => void }) {
 function ItemFields({ onNext }: { onNext: () => void }) {
   return (
     <>
-      item <button onClick={onNext}>next</button>
+      item <button onClick={() => onNext()}>next</button>
     </>
   );
 }
@@ -114,7 +145,7 @@ function ItemFields({ onNext }: { onNext: () => void }) {
 function ReceiverFields({ onNext }: { onNext: () => void }) {
   return (
     <>
-      receiver <button onClick={onNext}>next</button>
+      receiver <button onClick={() => onNext()}>next</button>
     </>
   );
 }
@@ -122,3 +153,4 @@ function ReceiverFields({ onNext }: { onNext: () => void }) {
 function EtcFields() {
   return <>etc</>;
 }
+*/
