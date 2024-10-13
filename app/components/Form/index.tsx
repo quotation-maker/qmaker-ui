@@ -2,9 +2,12 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useState } from 'react';
-// import type { SubmitHandler } from 'react-hook-form';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useController } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
+import type { ControllerRenderProps } from 'react-hook-form';
 import z from 'zod';
 import Funnel from '@components/Funnel';
 import styles from './form.css';
@@ -51,47 +54,47 @@ export default function Form() {
     resolver: zodResolver(schema),
     mode: 'onBlur',
   });
-  // const { handleSubmit, control } = methods;
-  // const {
-  //   field,
-  //   fieldState: { invalid }, // isDirty:, isTouched
-  // } = useController<IFormInput>({
-  //   name: 'toUsername',
-  //   control,
-  // });
-  // const onSubmit: SubmitHandler<IFormInput> = () => { };
+  const { handleSubmit, control } = methods;
+  const {
+    field,
+    fieldState: { invalid }, // isDirty:, isTouched
+  } = useController<IFormInput>({
+    name: 'toUsername',
+    control,
+  });
+  const onSubmit: SubmitHandler<IFormInput> = () => {};
 
   return (
     <section className={styles.section}>
       <FormProvider {...methods}>
         <form
           className={styles.formContainer}
-          // onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Funnel<typeof steps> step={step} steps={steps}>
             <Funnel.Step name="writer">
               <div>
-                writer
+                <WriterFields field={field} invalid={invalid} />
                 <button onClick={nextStep}>next</button>
               </div>
             </Funnel.Step>
             <Funnel.Step name="item">
               <div>
-                item
+                <ItemFields onNext={nextStep} />
                 <button onClick={nextStep}>next</button>
                 <button onClick={prevStep}>prev</button>
               </div>
             </Funnel.Step>
             <Funnel.Step name="receiver">
               <div>
-                receiver
+                <ReceiverFields onNext={nextStep} />
                 <button onClick={nextStep}>next</button>
                 <button onClick={prevStep}>prev</button>
               </div>
             </Funnel.Step>
             <Funnel.Step name="etc">
               <div>
-                etc
+                <EtcFields />
                 <button onClick={prevStep}>prev</button>
               </div>
             </Funnel.Step>
@@ -105,18 +108,18 @@ export default function Form() {
   );
 }
 
-/*
-function WriterFields({ onNext }: { onNext: () => void }) {
-  const handleClick = () => {
-    console.log('click writer');
-    onNext();
-  }
-
+function WriterFields({
+  invalid,
+  field,
+}: {
+  field: ControllerRenderProps<IFormInput, 'toUsername'>;
+  invalid: boolean;
+}) {
   return (
     <>
       <div>
         Writer
-          <TextField
+        <TextField
           onChange={field.onChange}
           onBlur={field.onBlur}
           value={field.value}
@@ -127,8 +130,7 @@ function WriterFields({ onNext }: { onNext: () => void }) {
           helperText={invalid && '받는 사람 이름은 필수 값입니다.'}
           error={invalid}
           className={styles.textInput}
-          />
-        <button onClick={handleClick}>next</button>
+        />
       </div>
     </>
   );
@@ -153,4 +155,3 @@ function ReceiverFields({ onNext }: { onNext: () => void }) {
 function EtcFields() {
   return <>etc</>;
 }
-*/
